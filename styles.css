@@ -1,0 +1,81 @@
+.star {
+}
+
+body {
+  /* background-image: url("./zaio_background.svg"); */
+  background-image: url("bg.svg");
+  background-repeat: repeat;
+  background-size: 100%;
+}
+
+.all {
+  height: 100vh;
+}
+
+.head {
+  font-size: 2.7rem;
+}
+
+.size {
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+
+  /* border: 2px solid gray; */
+}
+
+/* .size:hover {
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 0px 2px #808080;
+} */
+
+.active {
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 0px 2px #808080;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  width: 65px;
+  height: 45px;
+  text-align: center;
+}
+
+.btn-cart {
+  padding: 10px 50px;
+  cursor: pointer;
+}
+
+.quantity-circle {
+  height: 35px;
+  width: 35px;
+}
+
+.colors {
+  max-width: 410px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* .size:hover {
+  border: 0.25rem solid #808080;
+} */
+
+@media screen and (max-width: 768px) {
+  .head {
+    font-size: 2.1rem;
+  }
+  .card-subtitle {
+    font-size: 0.7rem;
+  }
+}
