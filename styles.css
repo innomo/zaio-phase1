@@ -67,9 +67,11 @@ a {
   cursor: pointer;
 }
 
-/* .size:hover {
-  border: 0.25rem solid #808080;
-} */
+circle {
+  background-color: #000;
+}
+
+/* Tooltip */
 
 @media screen and (max-width: 768px) {
   .head {

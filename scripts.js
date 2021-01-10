@@ -1,6 +1,9 @@
 let colorText = document.querySelector("#color-text");
 let selectedColor = document.querySelectorAll(".size");
 let colorList = document.querySelector("#color-list");
+let priceTotal = document.querySelector("#price-total");
+let priceItem = document.querySelector("#price-item");
+let toltip = document.querySelector("#tooltip");
 
 //Modal elements
 let quantity = document.querySelector("#quantity");
@@ -15,6 +18,8 @@ let currentQuantity = 0;
 let selectedColorName = "";
 let selectedColorHex = "";
 let list = "";
+let selectedItemPrice;
+let selectedTotalPrice;
 
 minusQuantity.addEventListener("click", function () {
   currentQuantity--;
@@ -27,16 +32,21 @@ plusQuantity.addEventListener("click", function () {
   quantity.textContent = currentQuantity;
 });
 
-agreeQuantity.addEventListener("click", function () {
+agreeQuantity.addEventListener("click", function (e) {
   if (currentQuantity != 0) {
     cartQuantity.textContent = currentQuantity;
     btnCart.textContent = "Checkout Now";
+    btnCart.dataset.bsTarget = "#needHelpModal";
+    tooltip.dataset.bsToggle = "";
+    tooltip.dataset.bsPlacement = "";
+    tooltip.dataset.bsOriginalTitle = "";
     btnCart.style.paddingLeft = "25px";
     btnCart.style.paddingRight = "25px";
     for (let i = 0; i < currentQuantity; i++) {
-      list += `<span class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></span>
+      list += `<marquee behavior="slide" direction="left" class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>
         `;
     }
+
     colorList.innerHTML = list;
   }
 });
@@ -47,34 +57,29 @@ selectedColor.forEach(function (clr) {
   clr.addEventListener("click", function (e) {
     selectedColorName = e.currentTarget.dataset.colorName;
     selectedColorHex = e.currentTarget.dataset.colorHex;
-    // alert(selectedColorHex);
+    selectedItemPrice = e.currentTarget.dataset.price;
+    //alert(selectedColorHex);
     colorText.textContent = selectedColorName;
     modalSelectedColor.textContent = selectedColorName;
+    priceItem.textContent = "$" + selectedItemPrice;
 
     //Remove active and Add it
     selectedColor.forEach((node) => {
       node.classList.remove("active");
     });
+
     e.currentTarget.classList.add("active");
-
-    // const menuCategory = menu.filter(function (menuItem) {
-    //   // console.log(menuItem.category);
-    //   if (menuItem.category === category) {
-    //     return menuItem;
-    //   }
   });
-  //   if (category === "all") {
-  //     diplayMenuItems(menu);
-  //   } else {
-  //     diplayMenuItems(menuCategory);
-  //   }
-  //   = selectedColorName;
 });
-// });
 
-//Change padding of Addtocart on Checkout
-// if (btnCart.textContent == "Checkout Now") {
-//   console.log("checkout");
-// } else {
-//   console.log("object");
-// }
+//Tooltip
+function initializeTooltip() {
+  let tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
+
+initializeTooltip();
