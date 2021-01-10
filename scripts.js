@@ -55,7 +55,7 @@ agreeQuantity.addEventListener("click", function (e) {
         `;
     }
     selectedTotalPrice =
-      "$" + Number(currentQuantity) * Number(selectedItemPrice);
+      "$" + (Number(currentQuantity) * Number(selectedItemPrice)).toFixed(2);
     priceTotal.textContent = selectedTotalPrice;
     productName.textContent = "  " + selectedColorName;
     product.innerHTML =
@@ -79,7 +79,7 @@ selectedColor.forEach(function (clr) {
     colorText.textContent = selectedColorName;
     modalSelectedColor.textContent = selectedColorName;
     priceItem.textContent = "$" + selectedItemPrice;
-
+    btnCart.disabled = false;
     //Remove active and Add it
     selectedColor.forEach((node) => {
       node.classList.remove("active");
@@ -93,6 +93,9 @@ selectedColor.forEach(function (clr) {
 checkoutClose.addEventListener("click", function () {
   location.reload();
 });
+
+//Disable add to cart if color is not selected
+btnCart.disabled = true;
 
 //Tooltip
 function initializeTooltip() {
