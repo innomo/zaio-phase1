@@ -14,6 +14,14 @@ let cartQuantity = document.querySelector("#cart-quantity");
 let btnCart = document.querySelector("#btn-cart");
 let modalSelectedColor = document.querySelector("#modal-selected-color");
 
+//Checkout modal elements
+let productName = document.querySelector("#product-name");
+let product = document.querySelector("#product");
+let productPrice = document.querySelector("#product-price");
+let productQuantity = document.querySelector("#product-quantity");
+let productTotal = document.querySelector("#product-total");
+let checkoutClose = document.querySelector("#checkout-close");
+
 let currentQuantity = 0;
 let selectedColorName = "";
 let selectedColorHex = "";
@@ -36,7 +44,7 @@ agreeQuantity.addEventListener("click", function (e) {
   if (currentQuantity != 0) {
     cartQuantity.textContent = currentQuantity;
     btnCart.textContent = "Checkout Now";
-    btnCart.dataset.bsTarget = "#needHelpModal";
+    btnCart.dataset.bsTarget = "#checkoutModal";
     tooltip.dataset.bsToggle = "";
     tooltip.dataset.bsPlacement = "";
     tooltip.dataset.bsOriginalTitle = "";
@@ -46,7 +54,16 @@ agreeQuantity.addEventListener("click", function (e) {
       list += `<marquee behavior="slide" direction="left" class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>
         `;
     }
-
+    selectedTotalPrice =
+      "$" + Number(currentQuantity) * Number(selectedItemPrice);
+    priceTotal.textContent = selectedTotalPrice;
+    productName.textContent = "  " + selectedColorName;
+    product.innerHTML =
+      "  " +
+      `<marquee behavior="slide" direction="left" class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>`;
+    productPrice.textContent = "  $" + selectedItemPrice;
+    productQuantity.textContent = "  " + currentQuantity;
+    productTotal.textContent = "  " + selectedTotalPrice;
     colorList.innerHTML = list;
   }
 });
@@ -70,6 +87,11 @@ selectedColor.forEach(function (clr) {
 
     e.currentTarget.classList.add("active");
   });
+});
+
+//Checkout Close
+checkoutClose.addEventListener("click", function () {
+  location.reload();
 });
 
 //Tooltip
