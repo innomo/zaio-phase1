@@ -80,6 +80,9 @@ selectedColor.forEach(function (clr) {
     modalSelectedColor.textContent = selectedColorName;
     priceItem.textContent = "$" + selectedItemPrice;
     btnCart.disabled = false;
+    tooltip.dataset.bsToggle = "";
+    tooltip.dataset.bsPlacement = "";
+    tooltip.dataset.bsOriginalTitle = "";
     //Remove active and Add it
     selectedColor.forEach((node) => {
       node.classList.remove("active");
