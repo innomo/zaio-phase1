@@ -4,6 +4,7 @@ let colorList = document.querySelector("#color-list");
 let priceTotal = document.querySelector("#price-total");
 let priceItem = document.querySelector("#price-item");
 let toltip = document.querySelector("#tooltip");
+let alert = document.querySelector("#alert");
 
 //Modal elements
 let quantity = document.querySelector("#quantity");
@@ -51,7 +52,7 @@ agreeQuantity.addEventListener("click", function (e) {
     btnCart.style.paddingLeft = "25px";
     btnCart.style.paddingRight = "25px";
     for (let i = 0; i < currentQuantity; i++) {
-      list += `<marquee behavior="slide" direction="left" class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>
+      list += `<marquee behavior="slide" direction="left" class="size-details d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>
         `;
     }
     selectedTotalPrice =
@@ -60,11 +61,13 @@ agreeQuantity.addEventListener("click", function (e) {
     productName.textContent = "  " + selectedColorName;
     product.innerHTML =
       "  " +
-      `<marquee behavior="slide" direction="left" class="size d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>`;
+      `<marquee behavior="slide" direction="left" class="size-details d-inline-block" style="background-color: ${selectedColorHex};" data-color-hex="${selectedColorHex}" data-color-name ="${selectedColorName}"></marquee>`;
     productPrice.textContent = "  $" + selectedItemPrice;
     productQuantity.textContent = "  " + currentQuantity;
     productTotal.textContent = "  " + selectedTotalPrice;
+    alert.style.display = "block !important";
     colorList.innerHTML = list;
+    alert.style.visibility = "visible;";
   }
 });
 
@@ -111,3 +114,18 @@ function initializeTooltip() {
 }
 
 initializeTooltip();
+
+//Loader and fade up
+let timer;
+let loaderId = document.querySelector("#content");
+
+function contentLoader() {
+  timer = setTimeout(showPage, 1500);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+loaderId.addEventListener("load", contentLoader());
