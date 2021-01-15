@@ -4,7 +4,7 @@ let colorList = document.querySelector("#color-list");
 let priceTotal = document.querySelector("#price-total");
 let priceItem = document.querySelector("#price-item");
 let toltip = document.querySelector("#tooltip");
-let alert = document.querySelector("#alert");
+let alertBox = document.querySelector("#alert-box");
 
 //Modal elements
 let quantity = document.querySelector("#quantity");
@@ -65,9 +65,9 @@ agreeQuantity.addEventListener("click", function (e) {
     productPrice.textContent = "  $" + selectedItemPrice;
     productQuantity.textContent = "  " + currentQuantity;
     productTotal.textContent = "  " + selectedTotalPrice;
-    alert.style.display = "block !important";
     colorList.innerHTML = list;
-    alert.style.visibility = "visible;";
+    alertBox.setAttribute("style", "display:block !important");
+    alertMessage();
   }
 });
 
@@ -78,7 +78,6 @@ selectedColor.forEach(function (clr) {
     selectedColorName = e.currentTarget.dataset.colorName;
     selectedColorHex = e.currentTarget.dataset.colorHex;
     selectedItemPrice = e.currentTarget.dataset.price;
-    //alert(selectedColorHex);
     colorText.textContent = selectedColorName;
     modalSelectedColor.textContent = selectedColorName;
     priceItem.textContent = "$" + selectedItemPrice;
@@ -129,3 +128,9 @@ function showPage() {
 }
 
 loaderId.addEventListener("load", contentLoader());
+
+function alertMessage() {
+  setTimeout(function () {
+    alertBox.setAttribute("style", "display:none !important");
+  }, 3000);
+}

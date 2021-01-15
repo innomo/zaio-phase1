@@ -148,7 +148,7 @@ circle {
   display: none;
 }
 
-#alert {
-  max-width: 442px !important;
+#alert-box {
+  max-width: 442px;
   display: none !important;
 }
